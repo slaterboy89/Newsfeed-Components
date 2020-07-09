@@ -85,6 +85,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  
+  {
+    title: 'Project Testing',
+    date: 'Jul 8th 2020', 
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Gravida cum sociis natoque penatibus et magnis dis parturient montes. Tortor at risus viverra adipiscing at in tellus integer feugiat. Tellus mauris a diam maecenas sed enim ut. Dolor morbi non arcu risus quis varius quam quisque. In arcu cursus euismod quis viverra nibh cras. Urna molestie at elementum eu facilisis sed odio morbi quis. Nisi scelerisque eu ultrices vitae auctor eu. Nibh ipsum consequat nisl vel pretium lectus quam id. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Iaculis nunc sed augue lacus viverra. Adipiscing commodo elit at imperdiet.`,
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Gravida cum sociis natoque penatibus et magnis dis parturient montes. Tortor at risus viverra adipiscing at in tellus integer feugiat. Tellus mauris a diam maecenas sed enim ut. Dolor morbi non arcu risus quis varius quam quisque. In arcu cursus euismod quis viverra nibh cras. Urna molestie at elementum eu facilisis sed odio morbi quis. Nisi scelerisque eu ultrices vitae auctor eu. Nibh ipsum consequat nisl vel pretium lectus quam id. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Iaculis nunc sed augue lacus viverra. Adipiscing commodo elit at imperdiet.`,
+    thirdParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Gravida cum sociis natoque penatibus et magnis dis parturient montes. Tortor at risus viverra adipiscing at in tellus integer feugiat. Tellus mauris a diam maecenas sed enim ut. Dolor morbi non arcu risus quis varius quam quisque. In arcu cursus euismod quis viverra nibh cras. Urna molestie at elementum eu facilisis sed odio morbi quis. Nisi scelerisque eu ultrices vitae auctor eu. Nibh ipsum consequat nisl vel pretium lectus quam id. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Iaculis nunc sed augue lacus viverra. Adipiscing commodo elit at imperdiet.`,
   }
 ];
 
@@ -111,3 +119,48 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+
+function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div')
+  const titles = document.createElement('h2')
+  const dates = document.createElement('p')
+  const first = document.createElement('p')
+  const second = document.createElement('p')
+  const third = document.createElement('p')
+  const span1 = document.createElement('span')
+  const expandButton = document.createElement('button')
+
+  article.appendChild(titles)
+  article.appendChild(dates)
+  article.appendChild(first)
+  article.appendChild(second)
+  article.appendChild(third)
+  article.appendChild(expandButton)
+
+  article.className = 'article'
+  dates.className = 'date'
+  expandButton.className = 'expandButton'
+
+  titles.textContent = title
+  dates.textContent = date
+
+  first.textContent = firstParagraph
+  second.textContent = secondParagraph
+  third.textContent = thirdParagraph
+
+  expandButton.textContent = '+'
+
+  expandButton.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+}
+
+const article = document.querySelector('.articles')
+
+data.forEach(object => {
+  console.log(object.date)
+  article.appendChild(articleMaker(object.title, object.date, object.firstParagraph, object.secondParagraph, object.thirdParagraph))
+})
